@@ -1,4 +1,4 @@
-package id.shaderboi.instagramui.ui.components
+package id.shaderboi.instagramui.ui.main.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row

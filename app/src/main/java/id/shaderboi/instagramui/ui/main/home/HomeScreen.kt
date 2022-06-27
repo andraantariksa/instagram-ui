@@ -1,6 +1,7 @@
-package id.shaderboi.instagramui.ui.home
+package id.shaderboi.instagramui.ui.main.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,12 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import id.shaderboi.instagramui.data.DummyData
-import id.shaderboi.instagramui.ui.components.InstagramBottomAppBar
-import id.shaderboi.instagramui.ui.components.InstagramTopAppBar
-import id.shaderboi.instagramui.ui.home.components.post.Post
-import id.shaderboi.instagramui.ui.home.components.story.Stories
+import id.shaderboi.instagramui.data.dummy.DummyData
+import id.shaderboi.instagramui.ui.main.components.InstagramTopAppBar
+import id.shaderboi.instagramui.ui.main.home.components.post.Post
+import id.shaderboi.instagramui.ui.main.home.components.story_preview.StoriesPreview
+import id.shaderboi.instagramui.ui.main.story.StoryActivity
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -24,9 +26,6 @@ fun HomeScreen() {
     Scaffold(
         topBar = {
             InstagramTopAppBar()
-        },
-        bottomBar = {
-            InstagramBottomAppBar()
         },
         content = { paddingValues ->
             LazyColumn(
@@ -50,13 +49,19 @@ fun HomeScreen() {
                             }
                             .padding(vertical = 10.dp)
                     ) {
-                        Stories()
+                        val context = LocalContext.current
+                        StoriesPreview() {
+                            val intent = Intent(context, StoryActivity::class.java).apply {
+                                putExtra("STORY_INDEX", 0)
+                            }
+                            context.startActivity(intent)
+                        }
                     }
                 }
 
                 items(DummyData.posts.size) { index ->
                     val post = DummyData.posts[index]
-                    Post(post = post)
+                    Post(userPost = post)
                 }
             }
         }

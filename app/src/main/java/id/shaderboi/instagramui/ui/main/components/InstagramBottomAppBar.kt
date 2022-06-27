@@ -1,4 +1,4 @@
-package id.shaderboi.instagramui.ui.components
+package id.shaderboi.instagramui.ui.main.components
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -15,14 +15,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import id.shaderboi.instagramui.data.dummy.DummyData
+import id.shaderboi.instagramui.ui.main.MainNavigationGraph
+import id.shaderboi.instagramui.ui.main.MainState
 
 @Composable
-fun InstagramBottomAppBar() {
+fun InstagramBottomAppBar(mainState: MainState) {
+    val navigation = mainState.navHostController
     BottomAppBar() {
         BottomNavigationItem(
             selected = false,
             onClick = {
-
+                navigation.navigate(MainNavigationGraph.Home.route)
             },
             icon = {
                 Icon(imageVector = Icons.Default.Home, contentDescription = "Home")
@@ -58,11 +62,11 @@ fun InstagramBottomAppBar() {
         BottomNavigationItem(
             selected = false,
             onClick = {
-
+                navigation.navigate(MainNavigationGraph.MyProfile.route)
             },
             icon = {
                 AsyncImage(
-                    model = "https://firebasestorage.googleapis.com/v0/b/instagram-ui-shaderboi.appspot.com/o/user%2Fandraantariksa%2F9760691.png?alt=media&token=df8b7fea-3199-4905-a9fc-76d3edac2fe0",
+                    model = DummyData.users["uesaka_sumire"]!!.briefInfo.imageUrl,
                     contentDescription = "Profile",
                     modifier = Modifier
                         .clip(CircleShape)

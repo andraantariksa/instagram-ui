@@ -1,4 +1,4 @@
-package id.shaderboi.instagramui.ui.home.components.post
+package id.shaderboi.instagramui.ui.main.home.components.post
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,22 +22,28 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
+import com.google.accompanist.placeholder.material.placeholder
 import compose.icons.FontAwesomeIcons
 import compose.icons.fontawesomeicons.Regular
 import compose.icons.fontawesomeicons.Solid
 import compose.icons.fontawesomeicons.regular.*
 import compose.icons.fontawesomeicons.solid.Heart
-import id.shaderboi.instagramui.data.DummyData
-import id.shaderboi.instagramui.domain.model.Post
+import id.shaderboi.instagramui.data.dummy.DummyData
+import id.shaderboi.instagramui.domain.model.Content
+import id.shaderboi.instagramui.domain.model.UserPost
+import id.shaderboi.instagramui.util.ResourceState
 
 private val iconModifier = Modifier
     .size(28.dp)
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun Post(post: Post) {
+fun Post(userPost: UserPost) {
     val pagerState = rememberPagerState()
     var isLiked by remember { mutableStateOf(false) }
+
+    val post = userPost.post
+    val userBrief = userPost.userBrief
 
     Column {
         Row(
@@ -52,17 +58,17 @@ fun Post(post: Post) {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 AsyncImage(
-                    model = post.userPreview.imageUrl,
+                    model = userBrief.imageUrl,
                     contentDescription = "",
                     modifier = Modifier
                         .size(32.dp)
                         .clip(CircleShape)
                 )
                 Text(
-                    text = post.userPreview.username,
+                    text = userBrief.username,
                     fontWeight = FontWeight.Bold
                 )
-                if (post.userPreview.isOfficial) {
+                if (userBrief.isOfficial) {
                     Icon(
                         imageVector = FontAwesomeIcons.Regular.CheckCircle,
                         contentDescription = "",
@@ -79,21 +85,39 @@ fun Post(post: Post) {
             )
         }
 
-        if (post.images.size == 1) {
-            AsyncImage(
-                model = post.images.first(),
-                contentDescription = ""
-            )
+        if (post.contents.size == 1) {
+            var state by remember { mutableStateOf(ResourceState.Loading) }
+            var modifier: Modifier = Modifier
+            if (state == ResourceState.Loading) {
+                modifier = modifier
+                    .height(50.dp)
+                    .placeholder(true)
+            }
+            when (val image = post.contents.first()) {
+                is Content.Image -> {
+                    AsyncImage(
+                        model = image.url,
+                        contentDescription = "",
+                        modifier = modifier,
+                        onLoading = { painter ->
+                            state = ResourceState.Loading
+                        },
+                        onSuccess = { painter ->
+                            state = ResourceState.Loading
+                        },
+                        onError = { painter ->
+                            state = ResourceState.Error
+                        }
+                    )
+                }
+                is Content.Video -> TODO()
+            }
         } else {
             HorizontalPager(
-                count = post.images.size,
+                count = post.contents.size,
                 state = pagerState
             ) { page ->
-                val image = post.images[page]
-                AsyncImage(
-                    model = image.url,
-                    contentDescription = ""
-                )
+                PostContent(post.contents[page])
             }
         }
 
@@ -129,17 +153,19 @@ fun Post(post: Post) {
                 )
             }
 
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier
-                    .weight(1F),
-                verticalAlignment = Alignment.Top
-            ) {
-                HorizontalPagerIndicator(
-                    pagerState = pagerState,
-                    activeColor = Color(0F, 0.584F, 0.965F),
-                    inactiveColor = Color(0.659F, 0.659F, 0.659F)
-                )
+            if (post.contents.size > 1) {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .weight(1F),
+                    verticalAlignment = Alignment.Top
+                ) {
+                    HorizontalPagerIndicator(
+                        pagerState = pagerState,
+                        activeColor = Color(0F, 0.584F, 0.965F),
+                        inactiveColor = Color(0.659F, 0.659F, 0.659F)
+                    )
+                }
             }
 
             Row(

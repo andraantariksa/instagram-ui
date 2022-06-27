@@ -94,5 +94,5 @@ object DummyData {
 
     val userStories: List<UserStory> = listOf()
 
-    val myUsername: Username = "uesaka_sumire"
+    const val myUsername: Username = "uesaka_sumire"
 }

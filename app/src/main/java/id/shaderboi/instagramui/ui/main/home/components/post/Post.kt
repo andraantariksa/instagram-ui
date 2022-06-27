@@ -1,5 +1,6 @@
 package id.shaderboi.instagramui.ui.main.home.components.post
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.*
@@ -27,16 +28,18 @@ fun Post(userPost: UserPost) {
     val userBrief = userPost.userBrief
 
     Column {
-        PostTopMenu(userBrief = userBrief)
-
         if (post.contents.size == 1) {
-            PostContent(
-                content = post.contents.first(),
-                onDoubleTap = {
-                    isLiked = !isLiked
-                }
-            )
+            Box {
+                PostContent(
+                    content = post.contents.first(),
+                    onDoubleTap = {
+                        isLiked = !isLiked
+                    }
+                )
+                PostTopMenu(userBrief = userBrief)
+            }
         } else {
+            PostTopMenu(userBrief = userBrief)
             HorizontalPager(
                 count = post.contents.size,
                 state = pagerState

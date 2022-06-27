@@ -8,6 +8,7 @@ object DummyData {
         "natgeoindonesia" to User(
             briefInfo = UserBriefInfo(
                 username = "natgeoindonesia",
+                imageUrl = "https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/natgeoindonesia/profile.jpg",
                 isOfficial = true,
             ),
             additionalInfo = UserAdditionalInfo(
@@ -20,6 +21,7 @@ object DummyData {
         "ecommurz" to User(
             briefInfo = UserBriefInfo(
                 username = "ecommurz",
+                imageUrl = "https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/ecommurz/profile.jpg",
             ),
             additionalInfo = UserAdditionalInfo(
                 description = "Indo Biggest Tech Execs & Workers community \uD83C\uDDEE\uD83C\uDDE9\n" +
@@ -31,7 +33,7 @@ object DummyData {
                 following = 141,
                 postCount = 752
             ),
-            contents = listOf(
+            story = listOf(
                 Content.Image("https://firebasestorage.googleapis.com/v0/b/instagram-ui-shaderboi.appspot.com/o/user%2Fecommurz%2F279278660_1004747560150894_8300046238725122530_n.webp?alt=media&token=99b04605-8bd5-4261-9150-2cb146c59426"),
                 Content.Image("https://firebasestorage.googleapis.com/v0/b/instagram-ui-shaderboi.appspot.com/o/user%2Fecommurz%2F279364530_2823559904604950_881192006437403722_n.webp?alt=media&token=2fb4f2c3-48d7-436f-a06c-bcb5b82f459a"),
                 Content.Image("https://firebasestorage.googleapis.com/v0/b/instagram-ui-shaderboi.appspot.com/o/user%2Fecommurz%2F279391597_705156570682654_1190001259206406071_n.webp?alt=media&token=355f2d16-535d-4ad2-8a83-d0aa30ba635c"),
@@ -41,6 +43,7 @@ object DummyData {
         "uesaka_sumire" to User(
             briefInfo = UserBriefInfo(
                 username = "uesaka_sumire",
+                imageUrl = "https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/profile.jpg",
                 isOfficial = true,
             ),
             additionalInfo = UserAdditionalInfo(
@@ -70,6 +73,37 @@ object DummyData {
                     relatedLike = listOf("adityo_w_pratomo", "nissacha05"),
                     createdAt = Instant.parse("2022-06-16T01:54:36.000Z")
                 ),
+            )
+        ),
+        "zachking" to User(
+            briefInfo = UserBriefInfo(
+                username = "zachking",
+                imageUrl = "https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/zachking/profile.jpg",
+                isOfficial = true
+            ),
+            story = listOf(),
+            additionalInfo = UserAdditionalInfo(
+                following = 212,
+                followers = 24500000,
+                postCount = 1047,
+                fullName = "Zach King",
+                description = "\uD83D\uDE03 Stories can make people smile.\n" +
+                        "\uD83D\uDCECContact - hello@zachkingteam.com\n" +
+                        "⤵️ These are the Links you are looking for ⤵️",
+                userCaption = "Digital Creator",
+                url = "www.zachkingteams.com/links"
+            ),
+            postsMap = mapOf(
+                1 to Post(
+                    contents = listOf(
+                        Content.Video("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/zachking/posts/1_1.mp4")
+                    ),
+                    caption = "Verified\n" +
+                            "Kids at Play ⚠️",
+                    likeCount = 840967,
+                    relatedLike = listOf("uesaka_sumire"),
+                    createdAt = Instant.parse("2022-06-13T15:04:19.000Z"),
+                )
             )
         )
     )

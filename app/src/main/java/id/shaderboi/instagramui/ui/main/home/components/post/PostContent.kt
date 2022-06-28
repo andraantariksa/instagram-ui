@@ -1,11 +1,12 @@
 package id.shaderboi.instagramui.ui.main.home.components.post
 
-import android.view.View
-import android.view.ViewGroup
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,7 +21,6 @@ import coil.compose.AsyncImage
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.placeholder
 import com.google.accompanist.placeholder.material.shimmer
-import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -100,25 +100,30 @@ fun PostContent(content: Content, onDoubleTap: () -> Unit) {
                         prepare()
                     }
                 }
-                AndroidView(
-                    factory = { factoryContext ->
-                        StyledPlayerView(context).apply {
-                            player = exoPlayer
-                            useController = false
-                            resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
-                            setOnClickListener { view ->
-                                if (exoPlayer.isPlaying) {
-                                    exoPlayer.pause()
-                                } else {
-                                    exoPlayer.play()
+                DisposableEffect(
+                    AndroidView(
+                        factory = { factoryContext ->
+                            StyledPlayerView(context).apply {
+                                player = exoPlayer
+                                useController = false
+                                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+                                setOnClickListener { view ->
+                                    if (exoPlayer.isPlaying) {
+                                        exoPlayer.pause()
+                                    } else {
+                                        exoPlayer.play()
+                                    }
                                 }
                             }
-                        }
-                    },
-                    modifier = modifier
-                        .fillMaxSize()
-                        .background(Color.Red),
-                )
+                        },
+                        modifier = modifier
+                            .fillMaxSize(),
+                    )
+                ) {
+                    onDispose {
+                        exoPlayer.release()
+                    }
+                }
             }
         }
     } else {

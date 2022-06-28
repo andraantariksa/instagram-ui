@@ -7,10 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import id.shaderboi.instagramui.ui.main.components.InstagramBottomAppBar
 import id.shaderboi.instagramui.ui.main.home.HomeScreen
-import id.shaderboi.instagramui.ui.main.profile.my.MyProfileScreen
+import id.shaderboi.instagramui.ui.main.my_profile.MyProfileScreen
+import id.shaderboi.instagramui.ui.main.reels.ReelsScreen
+import id.shaderboi.instagramui.ui.main.search.SearchScreen
+import id.shaderboi.instagramui.ui.main.shop.ShopScreen
 
 @Composable
 fun MainScreen() {
@@ -27,13 +29,13 @@ fun MainScreen() {
                     HomeScreen()
                 }
                 composable(MainNavigationGraph.Search.route) {
-//                            SearchScreen()
+                    SearchScreen()
                 }
                 composable(MainNavigationGraph.Reels.route) {
-//                            ReelsScreen()
+                    ReelsScreen()
                 }
-                composable(MainNavigationGraph.Market.route) {
-//                            MarketScreen()
+                composable(MainNavigationGraph.Shop.route) {
+                    ShopScreen()
                 }
                 composable(MainNavigationGraph.MyProfile.route) {
                     MyProfileScreen()

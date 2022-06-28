@@ -63,8 +63,7 @@ object DummyData {
                         Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/1_2.jpg"),
                         Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/1_3.jpg"),
                     ),
-                    caption = """Verified
-インスタグラムのフォロワーさまが49万人に！ありがとうございます！！
+                    caption = """インスタグラムのフォロワーさまが49万人に！ありがとうございます！！
 これからも仲良くしてくださいなヾ(*´∀｀*)ﾉ
 最近めのお写真いろいろです
 
@@ -72,6 +71,54 @@ object DummyData {
                     likeCount = 1448,
                     relatedLike = listOf("adityo_w_pratomo", "nissacha05"),
                     createdAt = Instant.parse("2022-06-16T01:54:36.000Z")
+                ),
+                2 to Post(
+                    contents = listOf(
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/2_1.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/2_2.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/2_3.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/2_4.jpg"),
+                    ),
+                    caption = """声優と夜あそび火曜日！！
+しばしのお別れなのです…！！！
+
+#たかはし上坂と夜あそび""",
+                    likeCount = 31861,
+                    relatedLike = listOf("adityo_w_pratomo", "nissacha05"),
+                    createdAt = Instant.parse("2022-06-21T12:59:39.000Z")
+                ),
+                3 to Post(
+                    contents = listOf(
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/3_1.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/3_2.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/3_3.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/3_4.jpg"),
+                    ),
+                    caption = """シンデレラガールズトロピカル公演のパンフレットで撮ったお写真です！
+トロピカル〜！！
+皆さま、よき週末をお過ごしくださいませ( ˘ω˘ )
+
+#アイドルマスターシンデレラガールズ""",
+                    likeCount = 34500,
+                    relatedLike = listOf("adityo_w_pratomo", "nissacha05"),
+                    createdAt = Instant.parse("2022-06-18T04:31:53.000Z")
+                ),
+                4 to Post(
+                    contents = listOf(
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/4_1.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/4_2.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/4_3.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/4_4.jpg"),
+                        Content.Image("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/uesaka_sumire/posts/4_5.jpg"),
+                    ),
+                    caption = """夜あそびでーす！
+まさかの…？！
+
+#たかはし上坂と夜あそび
+#上坂すみれ""",
+                    likeCount = 31171,
+                    relatedLike = listOf("adityo_w_pratomo", "nissacha05"),
+                    createdAt = Instant.parse("2022-06-14T12:58:38.000Z")
                 ),
             )
         ),
@@ -98,14 +145,58 @@ object DummyData {
                     contents = listOf(
                         Content.Video("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/zachking/posts/1_1.mp4")
                     ),
-                    caption = "Verified\n" +
-                            "Kids at Play ⚠️",
+                    caption = "Kids at Play ⚠️",
                     likeCount = 840967,
                     relatedLike = listOf("uesaka_sumire"),
                     createdAt = Instant.parse("2022-06-13T15:04:19.000Z"),
                 )
             )
         )
+    )
+
+    val dummyComments = listOf(
+        Comment(
+            username = "kasumi_sr",
+            comment = "寂しい\uD83D\uDE2Dお召し物可愛いですね\uD83C\uDF3C",
+            likeCount = 1,
+            createdAt = Instant.parse("2022-06-21T13:43:53.000Z")
+        ),
+        Comment(
+            username = "maichelprasetio",
+            comment = "\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A\uD83E\uDD70\uD83E\uDD70\uD83E\uDD70\uD83E\uDD70\uD83D\uDE0D\uD83D\uDE0D\uD83D\uDE0D\uD83D\uDE0D\uD83D\uDE0D\uD83D\uDE0B\uD83D\uDE0B\uD83D\uDE0B\uD83D\uDE0B\uD83D\uDE0B\uD83D\uDE0D\uD83D\uDE0D\uD83D\uDE0D\uD83D\uDE0D\uD83D\uDE0D\uD83D\uDE0D❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️",
+            likeCount = 1,
+            createdAt = Instant.parse("2022-06-21T13:15:19.000Z")
+        ),
+        Comment(
+            username = "takashima_nora",
+            comment = "寂しいで",
+            likeCount = 0,
+            createdAt = Instant.parse("2022-06-21T14:15:22.000Z")
+        ),
+        Comment(
+            username = "dsk77",
+            comment = "あらかわいい",
+            likeCount = 0,
+            createdAt = Instant.parse("2022-06-21T14:18:55.000Z")
+        ),
+        Comment(
+            username = "cl0_.n",
+            comment = "寂しいです（ ; ; ）また戻ってくるまで待ってますね！！舞台頑張ってください\uD83D\uDD25\uD83E\uDD0D",
+            likeCount = 1,
+            createdAt = Instant.parse("2022-06-21T13:12:56.000Z")
+        ),
+        Comment(
+            username = "kakipnut",
+            comment = "同志、お疲れさまです(｀･ω･´)ゞ肩のちら見せが可愛らしいお召し物ですなぁ\uD83D\uDE0A",
+            likeCount = 1,
+            createdAt = Instant.parse("2022-06-21T14:19:00.000Z")
+        ),
+        Comment(
+            username = "qiantian_zhenghong",
+            comment = "可愛いね✨いつもいつも素敵ですよ☺️",
+            likeCount = 1,
+            createdAt = Instant.parse("2022-06-21T14:37:38.000Z")
+        ),
     )
 
     val posts: List<UserPost>

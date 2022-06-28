@@ -26,7 +26,7 @@ fun Button(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     elevation: ButtonElevation? = ButtonDefaults.elevation(0.dp, 0.dp, 0.dp, 0.dp, 0.dp),
     shape: Shape = MaterialTheme.shapes.small,
-    border: BorderStroke? = BorderStroke(2.dp, Border),
+    border: BorderStroke? = BorderStroke(1.dp, Border),
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     content: @Composable RowScope.() -> Unit

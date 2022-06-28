@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import id.shaderboi.instagramui.data.dummy.DummyData
-import id.shaderboi.instagramui.ui.main.components.InstagramTopAppBar
+import id.shaderboi.instagramui.ui.main.components.HomeTopAppBar
 import id.shaderboi.instagramui.ui.main.home.components.post.Post
 import id.shaderboi.instagramui.ui.main.home.components.story_preview.StoriesPreview
 import id.shaderboi.instagramui.ui.main.story.StoryActivity
@@ -25,7 +25,7 @@ import id.shaderboi.instagramui.ui.main.story.StoryActivity
 fun HomeScreen() {
     Scaffold(
         topBar = {
-            InstagramTopAppBar()
+            HomeTopAppBar()
         },
         content = { paddingValues ->
             LazyColumn(

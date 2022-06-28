@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import id.shaderboi.instagramui.R
 
 @Composable
-fun InstagramTopAppBar() {
+fun HomeTopAppBar() {
     TopAppBar(
         title = {
             Row(

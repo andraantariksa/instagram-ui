@@ -59,6 +59,7 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$composeVersion2"
 
     implementation "com.google.accompanist:accompanist-pager:0.24.6-alpha"
+    implementation "com.google.accompanist:accompanist-flowlayout:0.24.6-alpha"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.24.6-alpha"
     implementation "br.com.devsrsouza.compose.icons.android:font-awesome:1.0.0"
     implementation "com.google.android.exoplayer:exoplayer:2.18.0"

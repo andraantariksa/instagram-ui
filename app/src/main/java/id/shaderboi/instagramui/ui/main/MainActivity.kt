@@ -7,11 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import id.shaderboi.instagramui.ui.main.home.HomeScreen
-import id.shaderboi.instagramui.ui.main.profile.my.MyProfileScreen
 import id.shaderboi.instagramui.ui.theme.InstagramUITheme
 
 class MainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package id.shaderboi.instagramui.ui.main.profile.my
+package id.shaderboi.instagramui.ui.main.my_profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text

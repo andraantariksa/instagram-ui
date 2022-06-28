@@ -1,8 +1,6 @@
-package id.shaderboi.instagramui.ui.main.profile.my
+package id.shaderboi.instagramui.ui.main.my_profile
 
 import android.icu.text.CompactDecimalFormat
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text

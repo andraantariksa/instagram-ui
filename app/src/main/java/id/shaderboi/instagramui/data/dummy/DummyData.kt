@@ -1,10 +1,18 @@
 package id.shaderboi.instagramui.data.dummy
 
-import id.shaderboi.instagramui.domain.model.*
+import id.shaderboi.instagramui.domain.UserStory
+import id.shaderboi.instagramui.domain.model.Comment
+import id.shaderboi.instagramui.domain.model.Content
+import id.shaderboi.instagramui.domain.model.Post
+import id.shaderboi.instagramui.domain.model.User
+import id.shaderboi.instagramui.domain.model.UserAdditionalInfo
+import id.shaderboi.instagramui.domain.model.UserBriefInfo
+import id.shaderboi.instagramui.domain.model.UserPost
+import id.shaderboi.instagramui.domain.model.Username
 import kotlinx.datetime.Instant
 
 object DummyData {
-    val users = hashMapOf<String, User>(
+    val users = hashMapOf(
         "natgeoindonesia" to User(
             briefInfo = UserBriefInfo(
                 username = "natgeoindonesia",
@@ -149,7 +157,25 @@ object DummyData {
                     likeCount = 840967,
                     relatedLike = listOf("uesaka_sumire"),
                     createdAt = Instant.parse("2022-06-13T15:04:19.000Z"),
-                )
+                ),
+                2 to Post(
+                    contents = listOf(
+                        Content.Video("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/zachking/posts/2_1.mp4")
+                    ),
+                    caption = "Magician or Makeup Artist? @selenagomez #magic #music",
+                    likeCount = 840967,
+                    relatedLike = listOf("uesaka_sumire"),
+                    createdAt = Instant.parse("2022-06-13T15:04:19.000Z"),
+                ),
+                3 to Post(
+                    contents = listOf(
+                        Content.Video("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/zachking/posts/3_1.mp4")
+                    ),
+                    caption = "this is puzzling \uD83E\uDDE9",
+                    likeCount = 840967,
+                    relatedLike = listOf("uesaka_sumire"),
+                    createdAt = Instant.parse("2022-06-13T15:04:19.000Z"),
+                ),
             )
         )
     )
@@ -217,7 +243,16 @@ object DummyData {
             return userPosts
         }
 
-    val userStories: List<UserStory> = listOf()
+
+    val userStories: List<UserStory> = users.values.filter {
+        it.story.isNotEmpty()
+    }.map {
+        UserStory(contents = it.story, userBriefInfo = it.briefInfo)
+    }
 
     const val myUsername: Username = "uesaka_sumire"
+
+    val reels = users["zachking"]!!.postsMap.values.map {
+        it.contents.size == 1 && it.contents[0] is Content.Video
+    }
 }

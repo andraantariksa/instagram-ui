@@ -1,15 +1,15 @@
 package id.shaderboi.instagramui.ui.main.home.components.post
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.rememberPagerState
 import id.shaderboi.instagramui.data.dummy.DummyData
 import id.shaderboi.instagramui.domain.model.UserPost
 
@@ -18,7 +18,7 @@ internal val postIconSize = 28.dp
 internal val postIconModifier = Modifier
     .size(postIconSize)
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Post(userPost: UserPost) {
     val pagerState = rememberPagerState()
@@ -41,7 +41,7 @@ fun Post(userPost: UserPost) {
         } else {
             PostTopMenu(userBrief = userBrief)
             HorizontalPager(
-                count = post.contents.size,
+                pageCount = post.contents.size,
                 state = pagerState
             ) { page ->
                 PostContent(

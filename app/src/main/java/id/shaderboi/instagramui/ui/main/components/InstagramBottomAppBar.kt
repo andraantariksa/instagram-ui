@@ -9,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -52,15 +51,6 @@ fun InstagramBottomAppBar(mainState: MainState) {
             },
             icon = {
                 Icon(imageVector = Icons.Default.PlayArrow, contentDescription = "Reels")
-            }
-        )
-        BottomNavigationItem(
-            selected = currentRoute == MainNavigationGraph.Shop.route,
-            onClick = {
-                navigation.navigate(MainNavigationGraph.Shop.route)
-            },
-            icon = {
-                Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "Shop")
             }
         )
         BottomNavigationItem(

@@ -1,7 +1,9 @@
 package id.shaderboi.instagramui.ui.main.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
@@ -15,10 +17,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HorizontalPagerIndicator(
     pagerState: PagerState,
@@ -46,9 +46,9 @@ fun HorizontalPagerIndicator(
                 .size(width = indicatorWidth, height = indicatorHeight)
                 .background(color = inactiveColor, shape = indicatorShape)
 
-            repeat(pagerState.pageCount) {
-                Box(indicatorModifier)
-            }
+//            repeat(pagerState.pageCount) {
+//                Box(indicatorModifier)
+//            }
         }
 
         Box(

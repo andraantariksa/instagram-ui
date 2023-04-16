@@ -5,39 +5,40 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalViewConfiguration
-import androidx.compose.ui.platform.ViewConfiguration
-import androidx.compose.ui.unit.DpSize
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
+    primary = Color(red = 38, green = 38, blue = 38),
     primaryVariant = Purple700,
-    secondary = Teal200
+    secondary = Teal200,
+    background = Color.Black,
+    onBackground = Color.White
 )
 
 private val LightColorPalette = lightColors(
     primary = Color.White,
     onPrimary = Color(0.149F, 0.149F, 0.149F),
-//    primaryVariant = Color.Black,
-//    secondary = Color.Black,
-
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+    background = Color.White
 )
 
 @Composable
-fun InstagramUITheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
+fun InstagramUITheme(
+    isDarkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+    val systemUiController = rememberSystemUiController()
+    val colors = if (isDarkTheme) {
         DarkColorPalette
     } else {
         LightColorPalette
+    }
+
+    SideEffect {
+        systemUiController.setSystemBarsColor(
+            color = colors.background
+        )
     }
 
     MaterialTheme(

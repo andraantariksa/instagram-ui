@@ -1,6 +1,13 @@
 package id.shaderboi.instagramui.ui.main.reels
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -8,17 +15,13 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.VerticalPager
-import com.google.accompanist.pager.rememberPagerState
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -29,62 +32,59 @@ import compose.icons.fontawesomeicons.Regular
 import compose.icons.fontawesomeicons.Solid
 import compose.icons.fontawesomeicons.regular.CommentDots
 import compose.icons.fontawesomeicons.regular.PaperPlane
-import compose.icons.fontawesomeicons.solid.*
+import compose.icons.fontawesomeicons.solid.Camera
+import compose.icons.fontawesomeicons.solid.Comment
+import compose.icons.fontawesomeicons.solid.Heart
+import compose.icons.fontawesomeicons.solid.Music
+import compose.icons.fontawesomeicons.solid.User
 
 data class Reel(
     val exoPlayer: ExoPlayer
 )
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ReelsScreen() {
     val context = LocalContext.current
-    val reels = remember {
-        List(
-            3
-        ) {
-            Reel(
-                ExoPlayer.Builder(context).build().apply {
-                    setMediaItem(MediaItem.fromUri("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/zachking/posts/1_1.mp4"))
-                    playWhenReady = true
-                    repeatMode = ExoPlayer.REPEAT_MODE_ALL
-                    addListener(object : Player.Listener {
-                        override fun onPlaybackStateChanged(playbackState: Int) {
-                            super.onPlaybackStateChanged(playbackState)
+    val exoPlayer = remember {
+        ExoPlayer.Builder(context).build().apply {
+//            setMediaItem(MediaItem.fromUri("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/zachking/posts/1_1.mp4"))
+            playWhenReady = true
+            repeatMode = ExoPlayer.REPEAT_MODE_ALL
+            addListener(object : Player.Listener {
+                override fun onPlaybackStateChanged(playbackState: Int) {
+                    super.onPlaybackStateChanged(playbackState)
 
-                            when (playbackState) {
-                                Player.STATE_BUFFERING -> {
+                    when (playbackState) {
+                        Player.STATE_BUFFERING -> {
 //                                        state = ResourceState.Loading
-                                }
-                                Player.STATE_READY -> {
-//                                        state = ResourceState.Loaded
-                                }
-                                else -> {}
-                            }
                         }
-                    })
-                    prepare()
-                    pause()
+
+                        Player.STATE_READY -> {
+//                                        state = ResourceState.Loaded
+                        }
+
+                        else -> {}
+                    }
                 }
-            )
+            })
+//            prepare()
+            pause()
         }
     }
-    val startPage = 0
-    val pagerState = rememberPagerState(initialPage = startPage)
-    LaunchedEffect(pagerState.currentPage) {
-        reels[pagerState.currentPage].exoPlayer.play()
-        reels.forEachIndexed { i, reel ->
-            if (i != pagerState.currentPage) {
-                reel.exoPlayer.pause()
-            }
-        }
-    }
+//    LaunchedEffect(pagerState.currentPage) {
+//        val page = (pagerState.currentPage - startPage) % reels.size
+//        reels[page].exoPlayer.play()
+//        reels.forEachIndexed { i, reel ->
+//            if (i != page) {
+//                reel.exoPlayer.pause()
+//            }
+//        }
+//    }
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
         IconButton(
             onClick = {
-
             },
             modifier = Modifier.align(Alignment.TopEnd)
         ) {
@@ -94,24 +94,21 @@ fun ReelsScreen() {
                 modifier = Modifier.size(36.dp)
             )
         }
-        pagerState.currentPage
-        VerticalPager(
-            modifier = Modifier.fillMaxSize(),
-            count = Int.MAX_VALUE,
-            state = pagerState
-        ) { _page ->
-            val page = (_page - startPage) % reels.size
-            val reel = reels[page]
+
+        Reels { page ->
             Box(
                 modifier = Modifier.fillMaxSize(),
             ) {
-                DisposableEffect(
-                    AndroidView(
-                        factory = {
-                            StyledPlayerView(context).apply {
-                                player = reel.exoPlayer
-                                useController = false
-                                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
+                AndroidView(
+                    factory = {
+                        StyledPlayerView(context).apply {
+                            player = exoPlayer
+                            useController = false
+                            resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
+                            exoPlayer.apply {
+                                setMediaItem(MediaItem.fromUri("https://raw.githubusercontent.com/andraantariksa/instagram-ui/master/assets/user/zachking/posts/1_1.mp4"))
+                                prepare()
+                            }
 //                                setOnClickListener { view ->
 //                                    if (reel.exoPlayer.isPlaying) {
 //                                        reel.exoPlayer.pause()
@@ -119,16 +116,40 @@ fun ReelsScreen() {
 //                                        reel.exoPlayer.play()
 //                                    }
 //                                }
-                            }
-                        },
-                        modifier = Modifier
-                            .fillMaxSize(),
-                    )
-                ) {
-                    onDispose {
-//                        reel.exoPlayer.pause()
-                    }
-                }
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxSize(),
+                )
+
+//                val lifecycleOwner by rememberUpdatedState(LocalLifecycleOwner.current)
+//                DisposableEffect(lifecycleOwner) {
+//                    val lifecycle = lifecycleOwner.lifecycle
+//                    val observer = LifecycleEventObserver { _, event ->
+//                        when (event) {
+//                            Lifecycle.Event.ON_PAUSE -> {
+//                                exoPlayer.playWhenReady = false
+//                            }
+//
+//                            Lifecycle.Event.ON_RESUME -> {
+//                                exoPlayer.playWhenReady = true
+//                            }
+//
+//                            Lifecycle.Event.ON_DESTROY -> {
+//                                exoPlayer.run {
+//                                    stop()
+//                                    release()
+//                                }
+//                            }
+//
+//                            else -> {}
+//                        }
+//                    }
+//                    lifecycle.addObserver(observer)
+//                    onDispose {
+//                        lifecycle.removeObserver(observer)
+//                    }
+//                }
 
                 Column(
                     modifier = Modifier.fillMaxSize(),
@@ -210,4 +231,10 @@ fun ReelsScreen() {
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewReelsScreen() {
+    ReelsScreen()
 }
